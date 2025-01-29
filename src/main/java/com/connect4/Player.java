@@ -1,4 +1,4 @@
-package  connect4;
+package  com.connect4;
 
 public class Player {
     private final String name;

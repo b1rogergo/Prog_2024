@@ -1,15 +1,61 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        //System.out.printf("Hello and welcome!");
+package com.connect4;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+import java.util.Scanner;
+
+public class Game {
+    private final Gameboard board;
+    private final Player human;
+    private final AIPlayer ai;
+    private final Scanner scanner;
+
+    public Game() {
+        board = new Gameboard(6, 7); // 6 sor, 7 oszlop (standard méret)
+        scanner = new Scanner(System.in);
+
+        System.out.print("Add meg a játékos neved: ");
+        String playerName = scanner.nextLine();
+        this.human = new Player(playerName, 'X');
+        this.ai = new AIPlayer('O');
+    }
+
+    public void start() {
+        System.out.println("\nÜdvözöllek a Connect 4 játékban, " + human.getName() + "!");
+        board.printBoard();
+
+        while (true) {
+            playerMove();
+            if (isGameOver()) break;
+            aiMove();
+            if (isGameOver()) break;
         }
+    }
+
+    private void playerMove() {
+        int column;
+        do {
+            System.out.print("Válassz egy oszlopot (0-6): ");
+            column = scanner.nextInt();
+        } while (!isValidMove(column));
+
+        human.makeMove(board, column);
+        board.printBoard();
+    }
+
+    private void aiMove() {
+        ai.makeMove(board);
+        board.printBoard();
+    }
+
+    private boolean isValidMove(int column) {
+        return column >= 0 && column < board.getCols();
+    }
+
+    private boolean isGameOver() {
+        return board.isFull(); // Ide még győzelmi ellenőrzést is be lehet tenni
+    }
+
+    public static void main(String[] args) {
+        Game game = new Game();
+        game.start();
     }
 }
