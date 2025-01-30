@@ -37,7 +37,7 @@ public class Gameboard {
     }
 
     public boolean checkWin(char playerSymbol) {
-        // Vízhintes ellenőrzés
+        // Vízszintes ellenőrzés
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col <= cols - 4; col++) {
                 if (board[row][col] == playerSymbol &&
@@ -120,7 +120,6 @@ public class Gameboard {
     public int getCols() {
         return cols;
     }
-
 
 
 

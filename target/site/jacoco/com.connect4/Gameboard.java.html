@@ -37,7 +37,7 @@ public class Gameboard {
     }
 
     public boolean checkWin(char playerSymbol) {
-        // Vízhintes ellenőrzés
+        // Vízszintes ellenőrzés
 <span class="nc bnc" id="L41" title="All 2 branches missed.">        for (int row = 0; row &lt; rows; row++) {</span>
 <span class="nc bnc" id="L42" title="All 2 branches missed.">            for (int col = 0; col &lt;= cols - 4; col++) {</span>
 <span class="nc bnc" id="L43" title="All 8 branches missed.">                if (board[row][col] == playerSymbol &amp;&amp;</span>
@@ -130,14 +130,13 @@ public class Gameboard {
 
 
 
-
 public int getRows() {
-<span class="nc" id="L135">        return rows;</span>
+<span class="nc" id="L134">        return rows;</span>
     }
 
 
     public char getCell(int i, int column) {
-<span class="nc" id="L140">        return board[i][column];</span>
+<span class="nc" id="L139">        return board[i][column];</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

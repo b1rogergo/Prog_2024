@@ -18,70 +18,8 @@ public class Game {
         this.human = new Player(playerName, 'X');
         this.ai = new AIPlayer('O');
 
-        // Játékállapot betöltése
+        // Játékállapot betöltése, ha létezik
         this.board = GameStateManager.loadGame(6, 7);
-    }
-
-
-
-    public void start() {
-        System.out.println("\nÚj játék kezdése...");
-        board.printBoard();
-
-        while (true) {
-            playerMove();
-            if (isGameOver()) break;
-            aiMove();
-            if (isGameOver()) break;
-        }
-
-        System.out.println("\nJáték véget ért.");
-        scoreManager.recordWin(human.getName());
-
-        // Játékállapot mentése
-        GameStateManager.saveGame(board);
-    }
-
-    private void playerMove() {
-        int column;
-        do {
-            System.out.print("Válassz egy oszlopot (0-6): ");
-            column = scanner.nextInt();
-            scanner.nextLine(); // Enter lenyelése
-        } while (!isValidMove(column));
-
-        human.makeMove(board, column);
-        board.printBoard();
-    }
-
-    private void aiMove() {
-        ai.makeMove(board);
-        board.printBoard();
-    }
-
-    private boolean isValidMove(int column) {
-        return column >= 0 && column < board.getCols();
-    }
-
-    private boolean isGameOver() {
-        return board.isFull();
-    }
-
-    public static void main(String[] args) {
-        Game game = new Game();
-        game.showMenu();
-    }
-
-
-
-
-    private boolean isGameOver(char playerSymbol) {
-        if (board.checkWin(playerSymbol)) {
-            System.out.println("\nA nyertes: " + (playerSymbol == human.getSymbol() ? human.getName() : "Gép"));
-            WinnerManager.saveWinner(playerSymbol == human.getSymbol() ? human.getName() : "Gép");
-            return true;
-        }
-        return board.isFull();
     }
 
     public void showMenu() {
@@ -120,4 +58,58 @@ public class Game {
         }
     }
 
+    public void start() {
+        System.out.println("\nÚj játék kezdése...");
+        board.printBoard();
+
+        while (true) {
+            if (playerMove()) break;
+            if (aiMove()) break;
+        }
+
+        System.out.println("\nJáték véget ért.");
+        GameStateManager.saveGame(board);
+    }
+
+    private boolean playerMove() {
+        int column;
+        do {
+            System.out.print("Válassz egy oszlopot (0-6): ");
+            column = scanner.nextInt();
+            scanner.nextLine(); // Enter lenyelése
+        } while (!isValidMove(column));
+
+        human.makeMove(board, column);
+        board.printBoard();
+
+        if (board.checkWin(human.getSymbol())) {
+            System.out.println("\n🎉 A nyertes: " + human.getName() + " 🎉");
+            WinnerManager.saveWinner(human.getName());
+            return true;
+        }
+
+        return board.isFull();
+    }
+
+    private boolean aiMove() {
+        ai.makeMove(board);
+        board.printBoard();
+
+        if (board.checkWin(ai.getSymbol())) {
+            System.out.println("\n🤖 A gép nyert! 🤖");
+            WinnerManager.saveWinner("Gép");
+            return true;
+        }
+
+        return board.isFull();
+    }
+
+    private boolean isValidMove(int column) {
+        return column >= 0 && column < board.getCols();
+    }
+
+    public static void main(String[] args) {
+        Game game = new Game();
+        game.showMenu();
+    }
 }
