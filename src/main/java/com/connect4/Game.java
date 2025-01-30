@@ -16,7 +16,7 @@ public class Game {
         this.human = new Player(playerName, 'X');
         this.ai = new AIPlayer('O');
 
-        // Játékállapot betöltése, ha létezik
+        // Ha létezik be nem fejezett játék akkor azt tölti be
         this.board = GameStateManager.loadGame(6, 7);
     }
 
@@ -75,29 +75,28 @@ public class Game {
         while (true) {
             System.out.print("Válassz egy oszlopot (0-6): ");
 
-            // Ellenőrizzük, hogy számot adott-e meg a felhasználó
+            // Itt törénik az ellenőrzés hogy szám került-e megadásra
             if (!scanner.hasNextInt()) {
                 System.out.println("Hibás bemenet! Csak számokat adj meg.");
-                scanner.next(); // Rossz bemenet eldobása
+                scanner.next();
                 continue;
             }
 
             column = scanner.nextInt();
-            scanner.nextLine(); // Enter lenyelése
+            scanner.nextLine();
 
-            // Ellenőrizzük, hogy az oszlop érvényes-e
+            // Ez ellenőrzi hogy a választható oszlopokból adtunk-e meg egyet
             if (column < 0 || column >= board.getCols()) {
                 System.out.println("Érvénytelen oszlop! Csak 0 és " + (board.getCols() - 1) + " közötti számot adj meg.");
                 continue;
             }
 
-            // Ellenőrizzük, hogy az oszlop nem telt-e meg
+            // Ez hogy betelt-e az oszlop
             if (board.getBoard()[0][column] != ' ') {
                 System.out.println("Ez az oszlop tele van! Válassz másikat.");
                 continue;
             }
 
-            // Ha minden rendben van, kilépünk a ciklusból
             break;
         }
 

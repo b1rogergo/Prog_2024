@@ -21,6 +21,6 @@ public class Player {
         if (board.dropDisc(column, symbol)) {
             return column;
         }
-        return -1; // Érvénytelen lépés
+        return -1; // Rossz lépés
     }
 }

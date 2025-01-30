@@ -8,9 +8,8 @@ public class GameStateManager {
     private static final String SAVE_FILE = "game_state.txt";
     private static char[][] board;
 
-    /**
-     * Játékállapot mentése egy szövegfájlba.
-     */
+    // Játékállapot mentése txt -be
+
     public static void saveGame(Gameboard board) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(SAVE_FILE))) {
             char[][] currentBoard = board.getBoard();
@@ -24,9 +23,9 @@ public class GameStateManager {
         }
     }
 
-    /**
-     * Játékállapot betöltése egy szövegfájlból.
-     */
+
+     //Játékállapot betöltése txt -ből
+
     public static Gameboard loadGame(int rows, int cols) {
         char[][] board = new char[rows][cols];
         if (!Files.exists(Paths.get(SAVE_FILE))) {

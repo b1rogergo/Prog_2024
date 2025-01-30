@@ -37,7 +37,7 @@ public class Gameboard {
     }
 
     public boolean checkWin(char playerSymbol) {
-        // Vízszintes ellenőrzés
+        // Ez vízszintesen ellenőriz
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col <= cols - 4; col++) {
                 if (board[row][col] == playerSymbol &&
@@ -49,7 +49,7 @@ public class Gameboard {
             }
         }
 
-        // Függőleges ellenőrzés
+        // Ez függőlegesen
         for (int col = 0; col < cols; col++) {
             for (int row = 0; row <= rows - 4; row++) {
                 if (board[row][col] == playerSymbol &&
@@ -61,7 +61,7 @@ public class Gameboard {
             }
         }
 
-        // Átlós ellenőrzés (balról jobbra le)
+        // Ez pedig átlósan
         for (int row = 0; row <= rows - 4; row++) {
             for (int col = 0; col <= cols - 4; col++) {
                 if (board[row][col] == playerSymbol &&
@@ -73,7 +73,7 @@ public class Gameboard {
             }
         }
 
-        // Átlós ellenőrzés (jobbról balra le)
+
         for (int row = 0; row <= rows - 4; row++) {
             for (int col = 3; col < cols; col++) {
                 if (board[row][col] == playerSymbol &&
@@ -120,10 +120,6 @@ public class Gameboard {
     public int getCols() {
         return cols;
     }
-
-
-
-
 
 
 

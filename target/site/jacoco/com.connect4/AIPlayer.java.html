@@ -13,7 +13,7 @@ public class AIPlayer extends Player {
     public int makeMove(Gameboard board) {
         int column;
         do {
-<span class="nc" id="L16">            column = random.nextInt(board.getCols()); // Véletlen oszlop választás</span>
+<span class="nc" id="L16">            column = random.nextInt(board.getCols()); // Véletlenül választja ki az oszlopot</span>
 <span class="nc bnc" id="L17" title="All 2 branches missed.">        } while (!board.dropDisc(column, getSymbol()));</span>
 
 <span class="nc" id="L19">        System.out.println(&quot;A gép &quot; + column + &quot;. oszlopba dobott.&quot;);</span>
