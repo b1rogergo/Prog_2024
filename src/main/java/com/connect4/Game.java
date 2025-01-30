@@ -83,7 +83,7 @@ public class Game {
         board.printBoard();
 
         if (board.checkWin(human.getSymbol())) {
-            System.out.println("\n🎉 A nyertes: " + human.getName() + " 🎉");
+            System.out.println("\n A nyertes: " + human.getName());
             WinnerManager.saveWinner(human.getName());
             return true;
         }
@@ -96,7 +96,7 @@ public class Game {
         board.printBoard();
 
         if (board.checkWin(ai.getSymbol())) {
-            System.out.println("\n🤖 A gép nyert! 🤖");
+            System.out.println("\n A gép nyert!");
             WinnerManager.saveWinner("Gép");
             return true;
         }

@@ -83,7 +83,7 @@ public class Game {
 <span class="nc" id="L83">        board.printBoard();</span>
 
 <span class="nc bnc" id="L85" title="All 2 branches missed.">        if (board.checkWin(human.getSymbol())) {</span>
-<span class="nc" id="L86">            System.out.println(&quot;\n🎉 A nyertes: &quot; + human.getName() + &quot; 🎉&quot;);</span>
+<span class="nc" id="L86">            System.out.println(&quot;\n A nyertes: &quot; + human.getName());</span>
 <span class="nc" id="L87">            WinnerManager.saveWinner(human.getName());</span>
 <span class="nc" id="L88">            return true;</span>
         }
@@ -96,7 +96,7 @@ public class Game {
 <span class="nc" id="L96">        board.printBoard();</span>
 
 <span class="nc bnc" id="L98" title="All 2 branches missed.">        if (board.checkWin(ai.getSymbol())) {</span>
-<span class="nc" id="L99">            System.out.println(&quot;\n🤖 A gép nyert! 🤖&quot;);</span>
+<span class="nc" id="L99">            System.out.println(&quot;\n A gép nyert!&quot;);</span>
 <span class="nc" id="L100">            WinnerManager.saveWinner(&quot;Gép&quot;);</span>
 <span class="nc" id="L101">            return true;</span>
         }
