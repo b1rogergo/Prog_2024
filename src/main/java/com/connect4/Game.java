@@ -71,15 +71,35 @@ public class Game {
 
     private boolean playerMove() {
         int column;
-        do {
+
+        while (true) {
             System.out.print("Válassz egy oszlopot (0-6): ");
+
+            // Ellenőrizzük, hogy számot adott-e meg a felhasználó
+            if (!scanner.hasNextInt()) {
+                System.out.println("Hibás bemenet! Csak számokat adj meg.");
+                scanner.next(); // Rossz bemenet eldobása
+                continue;
+            }
+
             column = scanner.nextInt();
             scanner.nextLine(); // Enter lenyelése
-            while (!board.dropDisc(column, this.human.getSymbol())) {
-                System.out.println("Oszlop megtelt, próbáld újra!");
-                column = scanner.nextInt();}board.printBoard();
 
-        } while (!isValidMove(column));
+            // Ellenőrizzük, hogy az oszlop érvényes-e
+            if (column < 0 || column >= board.getCols()) {
+                System.out.println("Érvénytelen oszlop! Csak 0 és " + (board.getCols() - 1) + " közötti számot adj meg.");
+                continue;
+            }
+
+            // Ellenőrizzük, hogy az oszlop nem telt-e meg
+            if (board.getBoard()[0][column] != ' ') {
+                System.out.println("Ez az oszlop tele van! Válassz másikat.");
+                continue;
+            }
+
+            // Ha minden rendben van, kilépünk a ciklusból
+            break;
+        }
 
         human.makeMove(board, column);
         board.printBoard();
@@ -93,6 +113,7 @@ public class Game {
 
         return board.isFull();
     }
+
 
     private boolean aiMove() {
         ai.makeMove(board);
