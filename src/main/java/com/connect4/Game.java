@@ -7,11 +7,9 @@ public class Game {
     private final Player human;
     private final AIPlayer ai;
     private final Scanner scanner;
-    private final Scoremanager scoreManager;
 
     public Game() {
         scanner = new Scanner(System.in);
-        scoreManager = new Scoremanager();
 
         System.out.print("Add meg a játékos neved: ");
         String playerName = scanner.nextLine();
@@ -44,7 +42,7 @@ public class Game {
                     start();
                     break;
                 case "E":
-                    scoreManager.displayScores();
+                    ResultsManager.displayResults();
                     break;
                 case "W":
                     WinnerManager.displayWinners();
@@ -85,6 +83,7 @@ public class Game {
         if (board.checkWin(human.getSymbol())) {
             System.out.println("\n A nyertes: " + human.getName());
             WinnerManager.saveWinner(human.getName());
+            ResultsManager.saveResult(human.getName(), true);
             return true;
         }
 
@@ -96,8 +95,9 @@ public class Game {
         board.printBoard();
 
         if (board.checkWin(ai.getSymbol())) {
-            System.out.println("\n A gép nyert!");
+            System.out.println("\n A gép nyert! ");
             WinnerManager.saveWinner("Gép");
+            ResultsManager.saveResult(human.getName(), false);
             return true;
         }
 
@@ -108,8 +108,4 @@ public class Game {
         return column >= 0 && column < board.getCols();
     }
 
-    public static void main(String[] args) {
-        Game game = new Game();
-        game.showMenu();
-    }
 }

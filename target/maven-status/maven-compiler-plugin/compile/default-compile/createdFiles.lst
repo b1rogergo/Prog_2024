@@ -6,4 +6,5 @@ com\connect4\Gameboard.class
 com\connect4\Player.class
 com\connect4\AIPlayer.class
 com\connect4\WinnerManager.class
+com\connect4\ResultsManager.class
 com\connect4\GameStateManager.class

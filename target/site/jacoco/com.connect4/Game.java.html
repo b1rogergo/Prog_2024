@@ -7,97 +7,97 @@ public class Game {
     private final Player human;
     private final AIPlayer ai;
     private final Scanner scanner;
-    private final Scoremanager scoreManager;
 
-<span class="nc" id="L12">    public Game() {</span>
-<span class="nc" id="L13">        scanner = new Scanner(System.in);</span>
-<span class="nc" id="L14">        scoreManager = new Scoremanager();</span>
+<span class="nc" id="L11">    public Game() {</span>
+<span class="nc" id="L12">        scanner = new Scanner(System.in);</span>
 
-<span class="nc" id="L16">        System.out.print(&quot;Add meg a játékos neved: &quot;);</span>
-<span class="nc" id="L17">        String playerName = scanner.nextLine();</span>
-<span class="nc" id="L18">        this.human = new Player(playerName, 'X');</span>
-<span class="nc" id="L19">        this.ai = new AIPlayer('O');</span>
+<span class="nc" id="L14">        System.out.print(&quot;Add meg a játékos neved: &quot;);</span>
+<span class="nc" id="L15">        String playerName = scanner.nextLine();</span>
+<span class="nc" id="L16">        this.human = new Player(playerName, 'X');</span>
+<span class="nc" id="L17">        this.ai = new AIPlayer('O');</span>
 
         // Játékállapot betöltése, ha létezik
-<span class="nc" id="L22">        this.board = GameStateManager.loadGame(6, 7);</span>
-<span class="nc" id="L23">    }</span>
+<span class="nc" id="L20">        this.board = GameStateManager.loadGame(6, 7);</span>
+<span class="nc" id="L21">    }</span>
 
     public void showMenu() {
         while (true) {
-<span class="nc" id="L27">            System.out.println(&quot;\n--- Connect 4 Menü ---&quot;);</span>
-<span class="nc" id="L28">            System.out.println(&quot;(N) Új játék&quot;);</span>
-<span class="nc" id="L29">            System.out.println(&quot;(L) Játék betöltése&quot;);</span>
-<span class="nc" id="L30">            System.out.println(&quot;(E) Eredmények&quot;);</span>
-<span class="nc" id="L31">            System.out.println(&quot;(W) Győztesek&quot;);</span>
-<span class="nc" id="L32">            System.out.println(&quot;(Q) Kilépés&quot;);</span>
-<span class="nc" id="L33">            System.out.print(&quot;Választás: &quot;);</span>
+<span class="nc" id="L25">            System.out.println(&quot;\n--- Connect 4 Menü ---&quot;);</span>
+<span class="nc" id="L26">            System.out.println(&quot;(N) Új játék&quot;);</span>
+<span class="nc" id="L27">            System.out.println(&quot;(L) Játék betöltése&quot;);</span>
+<span class="nc" id="L28">            System.out.println(&quot;(E) Eredmények&quot;);</span>
+<span class="nc" id="L29">            System.out.println(&quot;(W) Győztesek&quot;);</span>
+<span class="nc" id="L30">            System.out.println(&quot;(Q) Kilépés&quot;);</span>
+<span class="nc" id="L31">            System.out.print(&quot;Választás: &quot;);</span>
 
-<span class="nc" id="L35">            String choice = scanner.nextLine().toUpperCase();</span>
+<span class="nc" id="L33">            String choice = scanner.nextLine().toUpperCase();</span>
 
-<span class="nc bnc" id="L37" title="All 6 branches missed.">            switch (choice) {</span>
+<span class="nc bnc" id="L35" title="All 6 branches missed.">            switch (choice) {</span>
                 case &quot;N&quot;:
-<span class="nc" id="L39">                    this.board = new Gameboard(6, 7);</span>
-<span class="nc" id="L40">                    start();</span>
-<span class="nc" id="L41">                    break;</span>
+<span class="nc" id="L37">                    this.board = new Gameboard(6, 7);</span>
+<span class="nc" id="L38">                    start();</span>
+<span class="nc" id="L39">                    break;</span>
                 case &quot;L&quot;:
-<span class="nc" id="L43">                    this.board = GameStateManager.loadGame(6, 7);</span>
-<span class="nc" id="L44">                    start();</span>
-<span class="nc" id="L45">                    break;</span>
+<span class="nc" id="L41">                    this.board = GameStateManager.loadGame(6, 7);</span>
+<span class="nc" id="L42">                    start();</span>
+<span class="nc" id="L43">                    break;</span>
                 case &quot;E&quot;:
-<span class="nc" id="L47">                    scoreManager.displayScores();</span>
-<span class="nc" id="L48">                    break;</span>
+<span class="nc" id="L45">                    ResultsManager.displayResults();</span>
+<span class="nc" id="L46">                    break;</span>
                 case &quot;W&quot;:
-<span class="nc" id="L50">                    WinnerManager.displayWinners();</span>
-<span class="nc" id="L51">                    break;</span>
+<span class="nc" id="L48">                    WinnerManager.displayWinners();</span>
+<span class="nc" id="L49">                    break;</span>
                 case &quot;Q&quot;:
-<span class="nc" id="L53">                    System.out.println(&quot;Kilépés...&quot;);</span>
-<span class="nc" id="L54">                    return;</span>
+<span class="nc" id="L51">                    System.out.println(&quot;Kilépés...&quot;);</span>
+<span class="nc" id="L52">                    return;</span>
                 default:
-<span class="nc" id="L56">                    System.out.println(&quot;Érvénytelen választás. Próbáld újra.&quot;);</span>
+<span class="nc" id="L54">                    System.out.println(&quot;Érvénytelen választás. Próbáld újra.&quot;);</span>
             }
-<span class="nc" id="L58">        }</span>
+<span class="nc" id="L56">        }</span>
     }
 
     public void start() {
-<span class="nc" id="L62">        System.out.println(&quot;\nÚj játék kezdése...&quot;);</span>
-<span class="nc" id="L63">        board.printBoard();</span>
+<span class="nc" id="L60">        System.out.println(&quot;\nÚj játék kezdése...&quot;);</span>
+<span class="nc" id="L61">        board.printBoard();</span>
 
         while (true) {
-<span class="nc bnc" id="L66" title="All 2 branches missed.">            if (playerMove()) break;</span>
-<span class="nc bnc" id="L67" title="All 2 branches missed.">            if (aiMove()) break;</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            if (playerMove()) break;</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (aiMove()) break;</span>
         }
 
-<span class="nc" id="L70">        System.out.println(&quot;\nJáték véget ért.&quot;);</span>
-<span class="nc" id="L71">        GameStateManager.saveGame(board);</span>
-<span class="nc" id="L72">    }</span>
+<span class="nc" id="L68">        System.out.println(&quot;\nJáték véget ért.&quot;);</span>
+<span class="nc" id="L69">        GameStateManager.saveGame(board);</span>
+<span class="nc" id="L70">    }</span>
 
     private boolean playerMove() {
         int column;
         do {
-<span class="nc" id="L77">            System.out.print(&quot;Válassz egy oszlopot (0-6): &quot;);</span>
-<span class="nc" id="L78">            column = scanner.nextInt();</span>
-<span class="nc" id="L79">            scanner.nextLine(); // Enter lenyelése</span>
-<span class="nc bnc" id="L80" title="All 2 branches missed.">        } while (!isValidMove(column));</span>
+<span class="nc" id="L75">            System.out.print(&quot;Válassz egy oszlopot (0-6): &quot;);</span>
+<span class="nc" id="L76">            column = scanner.nextInt();</span>
+<span class="nc" id="L77">            scanner.nextLine(); // Enter lenyelése</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        } while (!isValidMove(column));</span>
 
-<span class="nc" id="L82">        human.makeMove(board, column);</span>
-<span class="nc" id="L83">        board.printBoard();</span>
+<span class="nc" id="L80">        human.makeMove(board, column);</span>
+<span class="nc" id="L81">        board.printBoard();</span>
 
-<span class="nc bnc" id="L85" title="All 2 branches missed.">        if (board.checkWin(human.getSymbol())) {</span>
-<span class="nc" id="L86">            System.out.println(&quot;\n A nyertes: &quot; + human.getName());</span>
-<span class="nc" id="L87">            WinnerManager.saveWinner(human.getName());</span>
-<span class="nc" id="L88">            return true;</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        if (board.checkWin(human.getSymbol())) {</span>
+<span class="nc" id="L84">            System.out.println(&quot;\n A nyertes: &quot; + human.getName());</span>
+<span class="nc" id="L85">            WinnerManager.saveWinner(human.getName());</span>
+<span class="nc" id="L86">            ResultsManager.saveResult(human.getName(), true);</span>
+<span class="nc" id="L87">            return true;</span>
         }
 
-<span class="nc" id="L91">        return board.isFull();</span>
+<span class="nc" id="L90">        return board.isFull();</span>
     }
 
     private boolean aiMove() {
-<span class="nc" id="L95">        ai.makeMove(board);</span>
-<span class="nc" id="L96">        board.printBoard();</span>
+<span class="nc" id="L94">        ai.makeMove(board);</span>
+<span class="nc" id="L95">        board.printBoard();</span>
 
-<span class="nc bnc" id="L98" title="All 2 branches missed.">        if (board.checkWin(ai.getSymbol())) {</span>
-<span class="nc" id="L99">            System.out.println(&quot;\n A gép nyert!&quot;);</span>
-<span class="nc" id="L100">            WinnerManager.saveWinner(&quot;Gép&quot;);</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        if (board.checkWin(ai.getSymbol())) {</span>
+<span class="nc" id="L98">            System.out.println(&quot;\n A gép nyert! &quot;);</span>
+<span class="nc" id="L99">            WinnerManager.saveWinner(&quot;Gép&quot;);</span>
+<span class="nc" id="L100">            ResultsManager.saveResult(human.getName(), false);</span>
 <span class="nc" id="L101">            return true;</span>
         }
 
@@ -108,9 +108,5 @@ public class Game {
 <span class="nc bnc" id="L108" title="All 4 branches missed.">        return column &gt;= 0 &amp;&amp; column &lt; board.getCols();</span>
     }
 
-    public static void main(String[] args) {
-<span class="nc" id="L112">        Game game = new Game();</span>
-<span class="nc" id="L113">        game.showMenu();</span>
-<span class="nc" id="L114">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
