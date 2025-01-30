@@ -1,3 +1,5 @@
 Adam:2
-Geri:1
+Kalman:2
+Geri:3
+John:6
 Sandor:0

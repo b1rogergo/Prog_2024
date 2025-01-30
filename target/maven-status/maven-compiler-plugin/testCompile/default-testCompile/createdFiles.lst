@@ -1,1 +1,7 @@
 ConnectTest.class
+WinnerManagertest.class
+ResultManagertest.class
+Playertest.class
+Gameboardtest.class
+GameStateManagertest.class
+AIPlayertest.class
