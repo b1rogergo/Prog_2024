@@ -1,6 +1,6 @@
-       
-       
-XO     
-XX     
-OXXOOO 
-XOXXXOO
+X      
+X      
+O     O
+X     O
+X     O
+X OOO O

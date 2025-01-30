@@ -75,6 +75,10 @@ public class Game {
             System.out.print("Válassz egy oszlopot (0-6): ");
             column = scanner.nextInt();
             scanner.nextLine(); // Enter lenyelése
+            while (!board.dropDisc(column, this.human.getSymbol())) {
+                System.out.println("Oszlop megtelt, próbáld újra!");
+                column = scanner.nextInt();}board.printBoard();
+
         } while (!isValidMove(column));
 
         human.makeMove(board, column);

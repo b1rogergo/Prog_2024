@@ -5,7 +5,7 @@ Prog_2024,com.connect4,AIPlayer,28,0,2,0,7,0,3,0,2,0
 Prog_2024,com.connect4,MoveValidator,19,0,6,0,2,0,5,0,2,0
 Prog_2024,com.connect4,Player,25,0,2,0,9,0,5,0,4,0
 Prog_2024,com.connect4,ResultsManager,154,0,12,0,35,0,11,0,5,0
-Prog_2024,com.connect4,Game,215,0,20,0,59,0,18,0,6,0
+Prog_2024,com.connect4,Game,234,0,22,0,62,0,19,0,6,0
 Prog_2024,com.connect4,WinnerManager,80,0,4,0,23,0,6,0,4,0
 Prog_2024,com.connect4,Gameboard,361,64,58,6,41,14,39,5,9,3
 Prog_2024,com.connect4,Scoremanager,39,0,0,0,7,0,4,0,4,0

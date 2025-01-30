@@ -75,37 +75,41 @@ public class Game {
 <span class="nc" id="L75">            System.out.print(&quot;Válassz egy oszlopot (0-6): &quot;);</span>
 <span class="nc" id="L76">            column = scanner.nextInt();</span>
 <span class="nc" id="L77">            scanner.nextLine(); // Enter lenyelése</span>
-<span class="nc bnc" id="L78" title="All 2 branches missed.">        } while (!isValidMove(column));</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            while (!board.dropDisc(column, this.human.getSymbol())) {</span>
+<span class="nc" id="L79">                System.out.println(&quot;Oszlop megtelt, próbáld újra!&quot;);</span>
+<span class="nc" id="L80">                column = scanner.nextInt();}board.printBoard();</span>
 
-<span class="nc" id="L80">        human.makeMove(board, column);</span>
-<span class="nc" id="L81">        board.printBoard();</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        } while (!isValidMove(column));</span>
 
-<span class="nc bnc" id="L83" title="All 2 branches missed.">        if (board.checkWin(human.getSymbol())) {</span>
-<span class="nc" id="L84">            System.out.println(&quot;\n A nyertes: &quot; + human.getName());</span>
-<span class="nc" id="L85">            WinnerManager.saveWinner(human.getName());</span>
-<span class="nc" id="L86">            ResultsManager.saveResult(human.getName(), true);</span>
-<span class="nc" id="L87">            return true;</span>
+<span class="nc" id="L84">        human.makeMove(board, column);</span>
+<span class="nc" id="L85">        board.printBoard();</span>
+
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (board.checkWin(human.getSymbol())) {</span>
+<span class="nc" id="L88">            System.out.println(&quot;\n A nyertes: &quot; + human.getName());</span>
+<span class="nc" id="L89">            WinnerManager.saveWinner(human.getName());</span>
+<span class="nc" id="L90">            ResultsManager.saveResult(human.getName(), true);</span>
+<span class="nc" id="L91">            return true;</span>
         }
 
-<span class="nc" id="L90">        return board.isFull();</span>
+<span class="nc" id="L94">        return board.isFull();</span>
     }
 
     private boolean aiMove() {
-<span class="nc" id="L94">        ai.makeMove(board);</span>
-<span class="nc" id="L95">        board.printBoard();</span>
+<span class="nc" id="L98">        ai.makeMove(board);</span>
+<span class="nc" id="L99">        board.printBoard();</span>
 
-<span class="nc bnc" id="L97" title="All 2 branches missed.">        if (board.checkWin(ai.getSymbol())) {</span>
-<span class="nc" id="L98">            System.out.println(&quot;\n A gép nyert! &quot;);</span>
-<span class="nc" id="L99">            WinnerManager.saveWinner(&quot;Gép&quot;);</span>
-<span class="nc" id="L100">            ResultsManager.saveResult(human.getName(), false);</span>
-<span class="nc" id="L101">            return true;</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">        if (board.checkWin(ai.getSymbol())) {</span>
+<span class="nc" id="L102">            System.out.println(&quot;\n A gép nyert! &quot;);</span>
+<span class="nc" id="L103">            WinnerManager.saveWinner(&quot;Gép&quot;);</span>
+<span class="nc" id="L104">            ResultsManager.saveResult(human.getName(), false);</span>
+<span class="nc" id="L105">            return true;</span>
         }
 
-<span class="nc" id="L104">        return board.isFull();</span>
+<span class="nc" id="L108">        return board.isFull();</span>
     }
 
     private boolean isValidMove(int column) {
-<span class="nc bnc" id="L108" title="All 4 branches missed.">        return column &gt;= 0 &amp;&amp; column &lt; board.getCols();</span>
+<span class="nc bnc" id="L112" title="All 4 branches missed.">        return column &gt;= 0 &amp;&amp; column &lt; board.getCols();</span>
     }
 
 }
