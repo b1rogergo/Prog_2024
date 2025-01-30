@@ -1,6 +1,6 @@
 Adam:2
-Kalman:2
+Kalman:4
 Geri:3
-John:6
 Zoltan:1
 Sandor:0
+Jozsi:1
