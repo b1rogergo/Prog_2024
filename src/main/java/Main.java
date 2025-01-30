@@ -1,4 +1,4 @@
-import com.connect4.game.Game;
+import com.connect4.Game;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.

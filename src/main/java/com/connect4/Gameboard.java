@@ -12,10 +12,16 @@ public class Gameboard {
         initializeBoard();
     }
 
+    public Gameboard(char[][] existingBoard) {
+        this.rows = existingBoard.length;
+        this.cols = existingBoard[0].length;
+        this.board = existingBoard;
+    }
+
     private void initializeBoard() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                board[i][j] = ' '; // Üres mezők
+                board[i][j] = ' ';
             }
         }
     }
@@ -27,10 +33,63 @@ public class Gameboard {
                 return true;
             }
         }
-        return false; // Oszlop megtelt
+        return false;
+    }
+
+    public boolean checkWin(char playerSymbol) {
+        // Vízhintes ellenőrzés
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col <= cols - 4; col++) {
+                if (board[row][col] == playerSymbol &&
+                        board[row][col + 1] == playerSymbol &&
+                        board[row][col + 2] == playerSymbol &&
+                        board[row][col + 3] == playerSymbol) {
+                    return true;
+                }
+            }
+        }
+
+        // Függőleges ellenőrzés
+        for (int col = 0; col < cols; col++) {
+            for (int row = 0; row <= rows - 4; row++) {
+                if (board[row][col] == playerSymbol &&
+                        board[row + 1][col] == playerSymbol &&
+                        board[row + 2][col] == playerSymbol &&
+                        board[row + 3][col] == playerSymbol) {
+                    return true;
+                }
+            }
+        }
+
+        // Átlós ellenőrzés (balról jobbra le)
+        for (int row = 0; row <= rows - 4; row++) {
+            for (int col = 0; col <= cols - 4; col++) {
+                if (board[row][col] == playerSymbol &&
+                        board[row + 1][col + 1] == playerSymbol &&
+                        board[row + 2][col + 2] == playerSymbol &&
+                        board[row + 3][col + 3] == playerSymbol) {
+                    return true;
+                }
+            }
+        }
+
+        // Átlós ellenőrzés (jobbról balra le)
+        for (int row = 0; row <= rows - 4; row++) {
+            for (int col = 3; col < cols; col++) {
+                if (board[row][col] == playerSymbol &&
+                        board[row + 1][col - 1] == playerSymbol &&
+                        board[row + 2][col - 2] == playerSymbol &&
+                        board[row + 3][col - 3] == playerSymbol) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     public void printBoard() {
+        clearScreen();
         for (char[] row : board) {
             for (char cell : row) {
                 System.out.print("| " + cell + " ");
@@ -38,6 +97,15 @@ public class Gameboard {
             System.out.println("|");
         }
         System.out.println("-".repeat(cols * 4));
+    }
+
+    private void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    public char[][] getBoard() {
+        return board;
     }
 
     public boolean isFull() {
@@ -49,17 +117,24 @@ public class Gameboard {
         return true;
     }
 
-    public char[][] getBoard() {
-        return board;
-    }
-
-    public int getRows() {
-        return rows;
-    }
-
     public int getCols() {
         return cols;
     }
+
+
+
+
+
+
+
+
+
+
+
+public int getRows() {
+        return rows;
+    }
+
 
     public char getCell(int i, int column) {
         return board[i][column];
