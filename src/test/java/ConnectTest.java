@@ -3,7 +3,7 @@ import com.connect4.Gameboard;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class Connect4test {
+public class ConnectTest {
 
     @Test
     public void testGameBoardInitialization() {

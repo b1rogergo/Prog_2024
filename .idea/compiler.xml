@@ -9,5 +9,6 @@
         <module name="Prog_2024" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="17" />
   </component>
 </project>

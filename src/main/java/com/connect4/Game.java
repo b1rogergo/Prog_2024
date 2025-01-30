@@ -1,25 +1,22 @@
-package com.connect4;
+package com.connect4.game;
+
+import com.connect4.Gameboard;
 
 import java.util.Scanner;
 
 public class Game {
-    private final com.connect4.Gameboard board;
-    private final Player human;
-    private final AIPlayer ai;
+    private final Gameboard board;
     private final Scanner scanner;
+    private final char playerSymbol = 'X';
+    private final char aiSymbol = 'O';
 
     public Game() {
-        board = new com.connect4.Gameboard(6, 7);
+        board = new Gameboard(6, 7);
         scanner = new Scanner(System.in);
-
-        System.out.print("Add meg a játékos neved: ");
-        String playerName = scanner.nextLine();
-        this.human = new Player(playerName, 'X');
-        this.ai = new AIPlayer('O');
     }
 
     public void start() {
-        System.out.println("\nÜdvözöllek a Connect 4 játékban, " + human.getName() + "!");
+        System.out.println("Üdvözöllek a Connect 4 játékban!");
         board.printBoard();
 
         while (true) {
@@ -31,27 +28,26 @@ public class Game {
     }
 
     private void playerMove() {
-        int column;
-        do {
-            System.out.print("Válassz egy oszlopot (0-6): ");
+        System.out.print("Válassz egy oszlopot (0-6): ");
+        int column = scanner.nextInt();
+        while (!board.dropDisc(column, playerSymbol)) {
+            System.out.println("Oszlop megtelt, próbáld újra!");
             column = scanner.nextInt();
-        } while (!isValidMove(column));
-
-        human.makeMove(board, column);
+        }
         board.printBoard();
     }
 
     private void aiMove() {
-        ai.makeMove(board);
+        int column = (int) (Math.random() * 7);
+        while (!board.dropDisc(column, aiSymbol)) {
+            column = (int) (Math.random() * 7);
+        }
+        System.out.println("Gép lépett.");
         board.printBoard();
     }
 
-    private boolean isValidMove(int column) {
-        return column >= 0 && column < board.getCols() && board.dropDisc(column, ' ');
-    }
-
     private boolean isGameOver() {
-        return board.isFull(); // Ide még győzelmi ellenőrzést is be lehet tenni
+        return board.isFull(); // Ha a tábla tele van, vége a játéknak
     }
 
     public static void main(String[] args) {
